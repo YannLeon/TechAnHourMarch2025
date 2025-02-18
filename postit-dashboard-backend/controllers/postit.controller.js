@@ -1,25 +1,23 @@
-const postitService = require("../services/postit.service");
+import {
+  getPostIts as _getPostIts,
+  addPostIt as _addPostIt,
+} from "../services/postit.service.js";
 
-const getPostIts = async (req, res) => {
+export const getPostIts = async (req, res) => {
   try {
-    const postIts = await postitService.getPostIts();
+    const postIts = _getPostIts();
     res.json(postIts);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const addPostIt = async (req, res) => {
+export const addPostIt = async (req, res) => {
   try {
     const { content, name } = req.body;
-    const newPostIt = await postitService.addPostIt(content, name);
+    const newPostIt = await _addPostIt(content, name);
     res.status(201).json(newPostIt);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-};
-
-module.exports = {
-  getPostIts,
-  addPostIt,
 };
