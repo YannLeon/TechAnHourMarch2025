@@ -5,7 +5,7 @@ import {
 
 export const getPostIts = async (req, res) => {
   try {
-    const postIts = _getPostIts();
+    const postIts = await _getPostIts();
     res.json(postIts);
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -3,6 +3,6 @@ import {
   getAllPostIts,
 } from "../repositories/postit.repository.js";
 
-export const getPostIts = () => getAllPostIts;
+export const getPostIts = async () => await getAllPostIts();
 
 export const addPostIt = (content, name) => createPostIt(content, name);
