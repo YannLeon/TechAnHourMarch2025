@@ -12,16 +12,16 @@ const logoutUser = () => {
 </script>
 
 <template>
-  <div
-    class="min-h-screen flex flex-col items-center justify-center bg-gray-100"
-  >
-    <div class="bg-white p-8 rounded-lg shadow-lg w-96 text-center">
-      <h2 class="text-2xl font-bold mb-4">
+  <div class="grow flex items-start justify-center bg-gray-100">
+    <div
+      class="bg-white grow p-4 rounded-lg shadow-lg w-96 text-center flex flex-row"
+    >
+      <h2 class="text-2xl grow font-bold mb-4">
         Welcome, {{ userStore.user?.name }}
       </h2>
       <button
         @click="logoutUser"
-        class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
+        class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
       >
         Logout
       </button>
