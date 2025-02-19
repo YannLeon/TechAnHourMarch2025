@@ -1,19 +1,13 @@
 import { query } from "../db.js";
 
 export const getUser = async (name) => {
-  const result = await query(
-    "SELECT * FROM users WHERE name = $1 ORDER BY created_at DESC",
-    [name]
-  );
+  const result = await query("SELECT * FROM users WHERE name = $1", [name]);
 
   return result.rows[0] ?? null;
 };
 
 export const getUserFromId = async (id) => {
-  const result = await query(
-    "SELECT * FROM users WHERE id = $1 ORDER BY created_at DESC",
-    [id]
-  );
+  const result = await query("SELECT * FROM users WHERE id = $1", [id]);
 
   return result.rows[0] ?? null;
 };

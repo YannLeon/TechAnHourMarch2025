@@ -27,6 +27,6 @@ insert into users (
    name,
    password
 ) values ( 'yann',
-           'hashed_password_1' ),( 'adèle',
-                                   'hashed_password_2' ),( 'admin',
-                                                           'hashed_password_3' );
+           '123123' ),( 'adèle',
+                        'password' ),( 'admin',
+                                       'admin' );

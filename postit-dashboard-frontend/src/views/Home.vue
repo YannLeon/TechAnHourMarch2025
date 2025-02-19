@@ -1,7 +1,30 @@
-<script setup></script>
+<script setup>
+import { useUserStore } from "../store/userStore.js";
+import { useRouter } from "vue-router";
+
+const userStore = useUserStore();
+const router = useRouter();
+
+const logoutUser = () => {
+  userStore.logout();
+  router.push("/authent");
+};
+</script>
 
 <template>
-  <div class="p-10">
-    <h2 class="text-xl font-semibold">Welcome to the Post-it Dashboard</h2>
+  <div
+    class="min-h-screen flex flex-col items-center justify-center bg-gray-100"
+  >
+    <div class="bg-white p-8 rounded-lg shadow-lg w-96 text-center">
+      <h2 class="text-2xl font-bold mb-4">
+        Welcome, {{ userStore.user?.name }}
+      </h2>
+      <button
+        @click="logoutUser"
+        class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition"
+      >
+        Logout
+      </button>
+    </div>
   </div>
 </template>
