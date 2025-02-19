@@ -9,4 +9,18 @@ cd .\postit-dashboard-backend\
 docker-compose up
 ```
 
-Then the api is accessible : http://localhost:3000/postits
+Then the api is accessible : http://localhost:3000
+
+available routes :
+
+- /postits
+- /user/login
+- /user/register
+
+## How to launch Front end
+
+```
+cd .\postit-dashboard-frontend\
+npm install
+npm run dev
+```
