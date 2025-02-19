@@ -2,7 +2,7 @@ import express, { json } from "express";
 import dotenv from "dotenv";
 import { addPostIt, getPostIts } from "./controllers/postit.controller.js";
 import { loginUser } from "./controllers/user.controller.js";
-import { registerUser } from "./services/user.service.js";
+import { registerUser } from "./controllers/user.controller.js";
 import cors from "cors";
 
 dotenv.config();

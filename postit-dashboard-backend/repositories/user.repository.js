@@ -13,11 +13,20 @@ export const getUserFromId = async (id) => {
 };
 
 export const createUser = async (name, password) => {
-  const result = await db.query(
-    `INSERT INTO users (name, password) 
-       VALUES ($1, $2) RETURNING *`,
-    [name, password] // ⚠️ Passwords should be hashed in a real application
-  );
+  console.log(`🔹 Creating user in DB: ${name}`);
 
-  return result.rows[0];
+  try {
+    const result = await query(
+      `INSERT INTO users (name, password) 
+       VALUES ($1, $2) RETURNING *`,
+      [name, password]
+    );
+
+    console.log("✅ User inserted in DB:", result.rows[0]);
+
+    return result.rows[0];
+  } catch (err) {
+    console.error("❌ Database insert error:", err.message);
+    throw new Error(`Database error: ${err.message}`);
+  }
 };

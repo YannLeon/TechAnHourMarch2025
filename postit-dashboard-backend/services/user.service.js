@@ -1,6 +1,7 @@
 import {
   createUser as _createUser,
   getUser,
+  getUserFromId,
 } from "../repositories/user.repository.js";
 import HttpError from "../utils/HttpError.js";
 
@@ -38,5 +39,6 @@ export const registerUser = async (name, password) => {
 
   // Create a new user
   const newUser = await _createUser(name, password);
-  return newUser.id; // Return the new user's ID
+
+  return newUser.id;
 };

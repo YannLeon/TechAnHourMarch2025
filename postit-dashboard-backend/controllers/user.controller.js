@@ -23,6 +23,10 @@ export const registerUser = async (req, res) => {
   try {
     const { name, password } = req.body;
 
+    if (typeof name !== "string" || typeof password !== "string") {
+      return res.status(400).json({ error: "Invalid input data" });
+    }
+
     if (!name || !password) {
       return res.status(400).json({ error: "Name and password are required" });
     }

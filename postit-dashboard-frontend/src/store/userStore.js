@@ -24,12 +24,18 @@ export const useUserStore = defineStore("user", {
     },
     async register(name, password) {
       try {
-        await axios.post("http://localhost:3000/user/register", {
-          name,
-          password,
-        });
+        const response = await axios.post(
+          "http://localhost:3000/user/register",
+          {
+            name,
+            password,
+          }
+        );
+        this.user = { name };
+        this.token = response.data.id;
         return true;
       } catch (error) {
+        console.log(error);
         alert(error.response.data.error);
         return false;
       }
