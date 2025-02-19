@@ -21,13 +21,11 @@ export const checkUserPassword = async (name, password) => {
 };
 
 export const getUserNameFromId = async (id) => {
-  console.log("try to get name from id :", id);
   const user = await getUserFromId(id);
 
   if (!user) {
     throw new HttpError("User not found", 404);
   }
-  console.log("found :", user.name);
   return user.name;
 };
 
