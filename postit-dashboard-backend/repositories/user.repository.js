@@ -1,7 +1,7 @@
-import db from "../db.js";
+import { query } from "../db.js";
 
 export const getUser = async (name) => {
-  const result = await db.query(
+  const result = await query(
     "SELECT * FROM users WHERE name = $1 ORDER BY created_at DESC",
     [name]
   );
@@ -10,7 +10,7 @@ export const getUser = async (name) => {
 };
 
 export const getUserFromId = async (id) => {
-  const result = await db.query(
+  const result = await query(
     "SELECT * FROM users WHERE id = $1 ORDER BY created_at DESC",
     [id]
   );
