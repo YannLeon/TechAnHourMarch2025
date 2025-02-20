@@ -12,3 +12,12 @@ export const createPostIt = async (content, user_id) => {
   );
   return result.rows[0];
 };
+
+export const deletePostIt = async (postId) => {
+  await query("DELETE FROM post_its WHERE id = $1", [postId]);
+};
+
+export const getPostItById = async (postId) => {
+  const result = await query("SELECT * FROM post_its WHERE id = $1", [postId]);
+  return result.rows[0] ?? null;
+};

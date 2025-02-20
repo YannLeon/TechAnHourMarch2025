@@ -33,13 +33,29 @@ const createPostIt = async () => {
   try {
     await axios.post("http://localhost:3000/postits", {
       content: newContent.value,
-      user_id: userStore.token, // Send user ID instead of name
+      user_id: userStore.token, // Send user ID
     });
 
     newContent.value = "";
     fetchPostIts(); // Refresh post-it list
   } catch (error) {
     console.error("Error creating post-it:", error);
+  }
+};
+
+// Delete a Post-it (Only if User Created It)
+const deletePostIt = async (postId) => {
+  try {
+    await axios.delete(`http://localhost:3000/postits/${postId}`, {
+      data: { user_id: userStore.token }, // Send user ID in the request body
+    });
+
+    fetchPostIts(); // Refresh post-it list
+  } catch (error) {
+    console.error(
+      "Error deleting post-it:",
+      error.response?.data || error.message
+    );
   }
 };
 
@@ -81,17 +97,26 @@ onMounted(fetchPostIts);
     </div>
 
     <!-- Display Post-its -->
-    <div class="w-full space-y-3 flex gap-2">
+    <div class="w-full space-y-3 flex gap-2 flex-wrap justify-center">
       <div
         v-for="post in postIts"
         :key="post.id"
-        class="bg-yellow-200 w-52 h-52 p-4 rounded-sm shadow-md flex flex-col"
+        class="bg-yellow-200 w-52 h-52 p-4 rounded-sm shadow-md flex flex-col relative"
       >
         <h4 class="font-bold uppercase">{{ post.name }}</h4>
         <p class="grow overflow-auto">{{ post.content }}</p>
         <small class="text-gray-600">{{
           new Date(post.created_at).toLocaleString()
         }}</small>
+
+        <!-- Show delete button only if the logged-in user owns the post-it -->
+        <button
+          v-if="post.user_id === userStore.token"
+          @click="deletePostIt(post.id)"
+          class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition"
+        >
+          ✖
+        </button>
       </div>
     </div>
   </div>

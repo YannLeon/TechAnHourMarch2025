@@ -1,6 +1,10 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
-import { addPostIt, getPostIts } from "./controllers/postit.controller.js";
+import {
+  addPostIt,
+  deletePostIt,
+  getPostIts,
+} from "./controllers/postit.controller.js";
 import { loginUser } from "./controllers/user.controller.js";
 import { registerUser } from "./controllers/user.controller.js";
 import cors from "cors";
@@ -15,6 +19,7 @@ const PORT = process.env.PORT || 3000;
 // Routes
 app.get("/postits", getPostIts);
 app.post("/postits", addPostIt);
+app.delete("/postits/:id", deletePostIt);
 
 app.post("/user/login", loginUser);
 app.post("/user/register", registerUser);
