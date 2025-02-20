@@ -53,7 +53,9 @@ onMounted(fetchPostIts);
     <div
       class="bg-white w-full max-w-4xl p-4 rounded-lg shadow-lg text-center flex justify-between items-center mb-6"
     >
-      <h2 class="text-2xl font-bold">Welcome, {{ userStore.user?.name }}</h2>
+      <h2 class="text-2xl font-bold">
+        Welcome, {{ userStore.user?.name.toUpperCase() }}
+      </h2>
       <button
         @click="logoutUser"
         class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
@@ -79,13 +81,13 @@ onMounted(fetchPostIts);
     </div>
 
     <!-- Display Post-its -->
-    <div class="w-full max-w-lg space-y-3">
+    <div class="w-full max-w-lg space-y-3 flex gap-2">
       <div
         v-for="post in postIts"
         :key="post.id"
-        class="bg-yellow-200 p-4 rounded-lg shadow-md"
+        class="bg-yellow-200 p-4 rounded-sm shadow-md aspect-square"
       >
-        <h4 class="font-bold">{{ post.name }}</h4>
+        <h4 class="font-bold uppercase">{{ post.name }}</h4>
         <p>{{ post.content }}</p>
         <small class="text-gray-600">{{
           new Date(post.created_at).toLocaleString()
