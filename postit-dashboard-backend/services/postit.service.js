@@ -17,4 +17,6 @@ export const getPostIts = async () => {
   return enrichedPostIts;
 };
 
-export const addPostIt = (content, userId) => createPostIt(content, userId);
+export const addPostIt = async (content, user_id) => {
+  await createPostIt(content, user_id);
+};

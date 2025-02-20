@@ -5,10 +5,10 @@ export const getAllPostIts = async () => {
   return result.rows;
 };
 
-export const createPostIt = async (content, name) => {
+export const createPostIt = async (content, user_id) => {
   const result = await query(
-    "INSERT INTO post_its (content, name, created_at) VALUES ($1, $2, NOW()) RETURNING *",
-    [content, name]
+    "INSERT INTO post_its (content,user_id, created_at) VALUES ($1, $2, NOW()) RETURNING *",
+    [content, user_id]
   );
   return result.rows[0];
 };

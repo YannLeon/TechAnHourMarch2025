@@ -81,14 +81,14 @@ onMounted(fetchPostIts);
     </div>
 
     <!-- Display Post-its -->
-    <div class="w-full max-w-lg space-y-3 flex gap-2">
+    <div class="w-full space-y-3 flex gap-2">
       <div
         v-for="post in postIts"
         :key="post.id"
-        class="bg-yellow-200 p-4 rounded-sm shadow-md aspect-square"
+        class="bg-yellow-200 w-52 h-52 p-4 rounded-sm shadow-md flex flex-col"
       >
         <h4 class="font-bold uppercase">{{ post.name }}</h4>
-        <p>{{ post.content }}</p>
+        <p class="grow overflow-auto">{{ post.content }}</p>
         <small class="text-gray-600">{{
           new Date(post.created_at).toLocaleString()
         }}</small>

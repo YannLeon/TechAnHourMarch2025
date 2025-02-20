@@ -14,8 +14,8 @@ export const getPostIts = async (req, res) => {
 
 export const addPostIt = async (req, res) => {
   try {
-    const { content, name } = req.body;
-    const newPostIt = await _addPostIt(content, name);
+    const { content, user_id } = req.body;
+    const newPostIt = await _addPostIt(content, user_id);
     res.status(201).json(newPostIt);
   } catch (error) {
     res.status(400).json({ error: error.message });
