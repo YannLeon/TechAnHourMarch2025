@@ -17,7 +17,7 @@ export const checkUserPassword = async (name, password) => {
     throw new HttpError("Incorrect password", 401);
   }
 
-  return user.id;
+  return { id: user.id, role: user.role };
 };
 
 export const getUserNameFromId = async (id) => {
@@ -39,5 +39,5 @@ export const registerUser = async (name, password) => {
   // Create a new user
   const newUser = await _createUser(name, password);
 
-  return newUser.id;
+  return { id: newUser.id, role: newUser.role };
 };

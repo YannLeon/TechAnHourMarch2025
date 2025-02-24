@@ -111,7 +111,7 @@ onMounted(fetchPostIts);
 
         <!-- Show delete button only if the logged-in user owns the post-it -->
         <button
-          v-if="post.user_id === userStore.token"
+          v-if="post.user_id === userStore.token || userStore.role === 'admin'"
           @click="deletePostIt(post.id)"
           class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition"
         >
