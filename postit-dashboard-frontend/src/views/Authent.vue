@@ -30,15 +30,16 @@ const toggleMode = () => {
     class="min-h-screen min-w-screen flex flex-col items-center justify-center bg-gray-100"
   >
     <div class="bg-white p-8 rounded-lg shadow-lg w-96">
-      <h2 class="text-2xl font-bold text-center mb-4">
+      <h2 class="text-2xl font-bold text-center mb-4" data-cy="auth-title">
         {{ isLogin ? "Login" : "Register" }}
       </h2>
-      <form @submit.prevent="handleAuth" class="space-y-4">
+      <form @submit.prevent="handleAuth" class="space-y-4" data-cy="auth-form">
         <input
           v-model="name"
           placeholder="Name"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           required
+          data-cy="auth-input-name"
         />
         <input
           type="password"
@@ -46,16 +47,22 @@ const toggleMode = () => {
           placeholder="Password"
           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           required
+          data-cy="auth-input-password"
         />
         <button
           type="submit"
           class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"
+          data-cy="auth-submit-btn"
         >
           {{ isLogin ? "Login" : "Register" }}
         </button>
       </form>
       <p class="text-center mt-4">
-        <button @click="toggleMode" class="text-blue-600 hover:underline">
+        <button
+          @click="toggleMode"
+          class="text-blue-600 hover:underline"
+          data-cy="auth-toggle-btn"
+        >
           {{
             isLogin
               ? "Need an account? Register"
