@@ -5,7 +5,7 @@ import {
   getPostItById,
 } from "../repositories/postit.repository.js";
 import HttpError from "../utils/HttpError.js";
-import { getUserNameFromId } from "./user.service.js";
+import { getUserNameFromId, getUserRoleFromId } from "./user.service.js";
 
 export const getPostIts = async () => {
   const postits = await getAllPostIts();
@@ -32,8 +32,10 @@ export const removePostIt = async (postId, userId) => {
     throw new HttpError("Post-it not found", 404);
   }
 
+  const userRole = await getUserRoleFromId(userId);
+
   // Check if the user deleting is the owner
-  if (postIt.user_id !== userId) {
+  if (postIt.user_id !== userId && userRole !== "admin") {
     throw new HttpError(
       "Unauthorized: You can only delete your own post-its",
       401

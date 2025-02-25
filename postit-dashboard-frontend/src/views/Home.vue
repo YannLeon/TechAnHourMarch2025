@@ -105,9 +105,9 @@ onMounted(fetchPostIts);
       >
         <h4 class="font-bold uppercase">{{ post.name }}</h4>
         <p class="grow overflow-auto">{{ post.content }}</p>
-        <small class="text-gray-600">{{
-          new Date(post.created_at).toLocaleString()
-        }}</small>
+        <small class="text-gray-600">
+          {{ new Date(post.created_at).toLocaleString() }}
+        </small>
 
         <!-- Show delete button only if the logged-in user owns the post-it -->
         <button

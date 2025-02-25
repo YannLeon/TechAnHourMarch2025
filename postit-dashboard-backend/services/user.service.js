@@ -29,6 +29,15 @@ export const getUserNameFromId = async (id) => {
   return user.name;
 };
 
+export const getUserRoleFromId = async (id) => {
+  const user = await getUserFromId(id);
+
+  if (!user) {
+    throw new HttpError("User not found", 404);
+  }
+  return user.role;
+};
+
 export const registerUser = async (name, password) => {
   // Check if user already exists
   const existingUser = await getUser(name);
