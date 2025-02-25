@@ -28,11 +28,9 @@ const fetchPostIts = async () => {
 
 // Create a new Post-it
 const createPostIt = async () => {
-  if (!newContent.value.trim()) return;
-
   try {
     await axios.post("http://localhost:3000/postits", {
-      content: newContent.value,
+      content: newContent.value === "" ? null : newContent.value,
       user_id: userStore.token, // Send user ID
     });
 
