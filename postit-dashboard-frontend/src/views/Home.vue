@@ -69,12 +69,13 @@ onMounted(fetchPostIts);
     <div
       class="bg-white w-full max-w-4xl p-4 rounded-lg shadow-lg text-center flex justify-between items-center mb-6"
     >
-      <h2 class="text-2xl font-bold">
+      <h2 class="text-2xl font-bold" data-cy="welcome-message">
         Welcome, {{ userStore.user?.name.toUpperCase() }}
       </h2>
       <button
         @click="logoutUser"
         class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+        data-cy="logout-btn"
       >
         Logout
       </button>
@@ -87,10 +88,12 @@ onMounted(fetchPostIts);
         v-model="newContent"
         placeholder="Write your note..."
         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+        data-cy="postit-input"
       />
       <button
         @click="createPostIt"
         class="w-full bg-blue-500 text-white py-2 mt-2 rounded-lg hover:bg-blue-600 transition"
+        data-cy="add-postit-btn"
       >
         Add Post-it
       </button>
