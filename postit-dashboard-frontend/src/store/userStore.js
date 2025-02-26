@@ -4,7 +4,7 @@ import axios from "axios";
 export const useUserStore = defineStore("user", {
   state: () => ({
     user: JSON.parse(sessionStorage.getItem("user")) || null,
-    token: sessionStorage.getItem("token") || null, // Use session storage to persist data
+    token: sessionStorage.getItem("token") || null,
     role: sessionStorage.getItem("role") || "user",
   }),
   actions: {
@@ -16,15 +16,14 @@ export const useUserStore = defineStore("user", {
         });
 
         this.user = { name };
-        this.token = response.data.user.id; // Make sure this matches the API response
+        this.token = response.data.user.id;
         this.role = response.data.user.role;
 
-        // ✅ Store in session storage
         sessionStorage.setItem("user", JSON.stringify(this.user));
         sessionStorage.setItem("token", this.token);
         sessionStorage.setItem("role", this.role);
 
-        // ✅ Simulate performance issue: Admin waits 5 seconds
+        // Simulate performance issue: Admin waits 5 seconds
         if (this.role === "admin") {
           await new Promise((resolve) => setTimeout(resolve, 5000));
         }
@@ -52,7 +51,6 @@ export const useUserStore = defineStore("user", {
         this.token = response.data.user.id;
         this.role = response.data.user.role;
 
-        // ✅ Store in session storage
         sessionStorage.setItem("user", JSON.stringify(this.user));
         sessionStorage.setItem("token", this.token);
         sessionStorage.setItem("role", this.role);
@@ -68,9 +66,8 @@ export const useUserStore = defineStore("user", {
     logout() {
       this.user = null;
       this.token = null;
-      this.role = "user"; // Reset role
+      this.role = "user";
 
-      // ✅ Remove from session storage
       sessionStorage.removeItem("user");
       sessionStorage.removeItem("token");
       sessionStorage.removeItem("role");

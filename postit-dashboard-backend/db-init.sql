@@ -13,7 +13,7 @@ insert into users (
    role
 ) values ( 'yann',
            '123123',
-           'user' ),( 'adèle',
+           'user' ),( 'mj',
                       'password',
                       'user' ),( 'admin',
                                  'admin',
@@ -37,6 +37,6 @@ insert into post_its (
 ) values ( 'Finish setting up the backend for the Post-it Dashboard.',
            1 ), -- Yann
            ( 'Test the frontend integration with the backend API.',
-                 2 ),      -- Adèle
+                 2 ),      -- MJ
                  ( 'Deploy the application using Docker Compose.',
                        3 );            -- Admin
