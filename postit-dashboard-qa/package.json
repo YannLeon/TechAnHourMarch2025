@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "cypress": "^14.1.0",
+    "typescript": "^5.7.3"
+  },
+  "scripts": {
+    "cy:open": "cypress open --e2e",
+    "all": "cypress run --spec 'cypress/e2e/**.feature'"
+  },
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.4"
+  }
+}
