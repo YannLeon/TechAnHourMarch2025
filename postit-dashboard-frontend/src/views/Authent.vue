@@ -6,22 +6,28 @@ import { useRouter } from "vue-router";
 const name = ref("");
 const password = ref("");
 const isLogin = ref(true);
+const errorMessage = ref(""); // Store error message
 const userStore = useUserStore();
 const router = useRouter();
 
 const handleAuth = async () => {
   console.log("auth launch");
-  const success = isLogin.value
+  errorMessage.value = ""; // Clear previous errors
+
+  const response = isLogin.value
     ? await userStore.login(name.value, password.value)
     : await userStore.register(name.value, password.value);
 
-  if (success) {
+  if (response.success) {
     router.push("/home");
+  } else {
+    errorMessage.value = response.message; // Set error message
   }
 };
 
 const toggleMode = () => {
   isLogin.value = !isLogin.value;
+  errorMessage.value = ""; // Clear error when switching mode
 };
 </script>
 
@@ -49,6 +55,13 @@ const toggleMode = () => {
           required
           data-cy="auth-input-password"
         />
+        <p
+          v-if="errorMessage"
+          class="text-red-500 text-sm text-center"
+          data-cy="auth-error"
+        >
+          {{ errorMessage }}
+        </p>
         <button
           type="submit"
           class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition"

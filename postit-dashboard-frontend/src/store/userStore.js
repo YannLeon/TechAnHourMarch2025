@@ -28,11 +28,14 @@ export const useUserStore = defineStore("user", {
           await new Promise((resolve) => setTimeout(resolve, 5000));
         }
 
-        return true;
+        return { success: true };
       } catch (error) {
         console.log(error);
-        alert(error.response?.data?.error || "Login failed");
-        return false;
+        return {
+          success: false,
+          message:
+            error.response?.data?.error || "Login failed. Please try again.",
+        };
       }
     },
 
@@ -55,11 +58,15 @@ export const useUserStore = defineStore("user", {
         sessionStorage.setItem("token", this.token);
         sessionStorage.setItem("role", this.role);
 
-        return true;
+        return { success: true };
       } catch (error) {
         console.log(error);
-        alert(error.response?.data?.error || "Registration failed");
-        return false;
+        return {
+          success: false,
+          message:
+            error.response?.data?.error ||
+            "Registration failed. Please try again.",
+        };
       }
     },
 
