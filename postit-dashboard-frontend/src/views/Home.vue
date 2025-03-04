@@ -103,9 +103,14 @@ onMounted(fetchPostIts);
         v-for="post in postIts"
         :key="post.id"
         class="bg-yellow-200 w-52 h-52 p-4 rounded-sm shadow-md flex flex-col relative"
+        :data-cy="`postit-${post.id}`"
       >
-        <h4 class="font-bold uppercase">{{ post.name }}</h4>
-        <p class="grow overflow-auto">{{ post.content }}</p>
+        <h4 class="font-bold uppercase" :data-cy="`postit-author-${post.id}`">
+          {{ post.name }}
+        </h4>
+        <p class="grow overflow-auto" :data-cy="`postit-content-${post.id}`">
+          {{ post.content }}
+        </p>
         <small class="text-gray-600">
           {{ new Date(post.created_at).toLocaleString() }}
         </small>
@@ -115,6 +120,7 @@ onMounted(fetchPostIts);
           v-if="post.user_id === userStore.token || userStore.role === 'admin'"
           @click="deletePostIt(post.id)"
           class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition"
+          :data-cy="`postit-delete-${post.id}`"
         >
           ✖
         </button>
