@@ -30,8 +30,14 @@ Then('I\'m redirected to the home page', () => {
     cy.url().should('include', '/home')
 })
 
+Then('I\'m redirected to the authentication page', () => {
+    cy.url().should('include', '/authent')
+})
+
 Then('I can see {int} post its', (nbOfPostIts) => {
-    //to develop when ids are added
+    cy.get('[data-cy="postit"]').then(result => {
+       expect(result.length).to.equal(nbOfPostIts)
+    })
 })
 
 Then('the home page welcome message contains the user {string}', (username) => {

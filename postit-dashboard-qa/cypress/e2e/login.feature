@@ -1,6 +1,6 @@
 Feature: Log in test cases
-
-  Scenario Outline: Nominal case user log in
+@focus
+  Scenario Outline: Nominal case user log in/ log out
     Given I am on the log in page
     When I fill in the form with the following credentials :
       | username | password   |
@@ -8,8 +8,9 @@ Feature: Log in test cases
     And I click on the log in button
     Then I'm redirected to the home page
     And the home page welcome message contains the user "<user>"
-    And I can see 5 post its
+    And I can see 3 post its
     When I click on the log out button
+    Then I'm redirected to the authentication page
 
     Examples:
       | user | password |
