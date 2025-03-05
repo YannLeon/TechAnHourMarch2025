@@ -15,6 +15,7 @@ const logoutUser = () => {
 // State for post-its
 const postIts = ref([]);
 const newContent = ref("");
+const errorMessage = ref(""); // State for error message
 
 // Fetch Post-its from API
 const fetchPostIts = async () => {
@@ -28,13 +29,19 @@ const fetchPostIts = async () => {
 
 // Create a new Post-it
 const createPostIt = async () => {
+  if (!newContent.value.trim()) {
+    errorMessage.value = "Post-it content cannot be empty!";
+    return;
+  }
+
   try {
     await axios.post("http://localhost:3000/postits", {
-      content: newContent.value === "" ? null : newContent.value,
+      content: newContent.value,
       user_id: userStore.token, // Send user ID
     });
 
     newContent.value = "";
+    errorMessage.value = ""; // Clear error after successful creation
     fetchPostIts(); // Refresh post-it list
   } catch (error) {
     console.error("Error creating post-it:", error);
@@ -88,6 +95,14 @@ onMounted(fetchPostIts);
         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
         data-cy="postit-input"
       />
+      <!-- Error Message -->
+      <p
+        v-if="errorMessage"
+        class="text-red-500 text-sm mt-1"
+        data-cy="error-message"
+      >
+        {{ errorMessage }}
+      </p>
       <button
         @click="createPostIt"
         class="w-full bg-blue-500 text-white py-2 mt-2 rounded-lg hover:bg-blue-600 transition"
