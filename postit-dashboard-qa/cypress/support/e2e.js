@@ -14,4 +14,17 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+afterEach(function () {
+  if (Cypress.config("video")) {
+    const scenarioName = this.currentTest.title.replace(/\s+/g, "_"); // Format scenario name
+    const specFileName = Cypress.spec.name.replace(/\.feature$/, ""); // Remove extension
+    const videoDir = `cypress/videos/`;
+
+    cy.task("renameVideo", {
+      original: `${videoDir}${specFileName}.mp4`,
+      newFile: `${videoDir}${specFileName}_${scenarioName}.mp4`,
+    });
+  }
+});
+
+import "./commands";
