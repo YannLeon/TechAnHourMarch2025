@@ -1,8 +1,8 @@
 const { defineConfig } = require("cypress");
+const fs = require("fs")
 
 module.exports = defineConfig({
   video: true,
-  videoCompression: 32, // Lower value for better quality
   videoUploadOnPasses: false, // Keep videos even if tests pass
 
   env: {
