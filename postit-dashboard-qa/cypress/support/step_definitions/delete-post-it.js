@@ -1,9 +1,8 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
+import { Given, When, Before } from "@badeball/cypress-cucumber-preprocessor"
 
-Given('I have a post it with the message {string} via API', (message) => {
-    cy.request({
-        method: 'POST',
-        url: 'localhost:3000/postits',
-        body: { "content": message, "user_id": "1" }
+When('I delete post it with the message {string}', (message) => {
+    cy.get('[data-cy="postit-content"]').contains(message).parent().within(() => {
+        cy.get('[data-cy="postit-delete"]').click()
     })
+    cy.wait(500)
 })
