@@ -3,7 +3,6 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
 Given('I am on the log in page', () => {
     cy.visit(Cypress.env('baseUrl'))
     cy.url().should('include', '/authent')
-
 });
 
 When('I fill in the form with the following credentials :', (credentialsTable) => {
@@ -36,13 +35,14 @@ Then('I\'m redirected to the authentication page', () => {
 
 Then('I can see {int} post its', (nbOfPostIts) => {
     cy.get('[data-cy="postit"]').then(result => {
-       expect(result.length).to.equal(nbOfPostIts)
+        expect(result.length).to.equal(nbOfPostIts)
     })
 })
 
 Then('the home page welcome message contains the user {string}', (username) => {
     cy.get('[data-cy="welcome-message"]').should('contain', `Welcome, ${username.toUpperCase()}`);
 })
+
 Then('the error message {string} appears in red', (errorMessage) => {
     cy.get('[data-cy="auth-error"]').should('contain', errorMessage).should('have.css', 'color', 'oklch(0.637 0.237 25.331)');
 })

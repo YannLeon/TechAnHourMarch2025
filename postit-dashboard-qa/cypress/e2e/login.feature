@@ -13,10 +13,10 @@ Feature: Log in test cases
     Then I'm redirected to the authentication page
 
     Examples:
-      | user | password |
-      | mj   | password |
-      | yann |   123123 |
-      # | admin | admin    |
+      | user  | password |
+      | mj    | password |
+      | yann  |   123123 |
+      | admin | admin    |
 
   Scenario: User not found case
     Given I am on the log in page
