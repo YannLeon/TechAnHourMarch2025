@@ -12,7 +12,7 @@ Feature: Log in test cases
     Then I'm redirected to the home page
     And the home page welcome message contains the user "mj"
     Then the "Create a new Post-it" is displayed
-    And I can see 4 post its
+    And I can see 3 post its
     When I create new post it with the message "QA Cypress note"
     Then the post it with the message "QA Cypress note" appears with "MJ" as the author
     And I can see 4 post its
