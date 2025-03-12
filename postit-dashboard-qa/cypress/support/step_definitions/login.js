@@ -21,10 +21,6 @@ When('I click on the register button', () => {
     cy.get('[data-cy="auth-submit-btn"]').click()
 })
 
-When('I click on the log out button', () => {
-    cy.get('[data-cy="logout-btn"]').click()
-});
-
 Then('I\'m redirected to the home page', () => {
     cy.url().should('include', '/home')
 })

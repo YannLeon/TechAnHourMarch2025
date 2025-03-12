@@ -1,5 +1,5 @@
 Feature: Log in test cases
-@focus
+
   Scenario Outline: Nominal case user log in/ log out
     Given I am on the log in page
     When I fill in the form with the following credentials :
