@@ -5,7 +5,7 @@ When('I delete post it with the message {string}', (message) => {
         cy.get('[data-cy="postit-delete"]').click()
     })
     cy.wait(500)
-})
+});
 
 Then('the user {string} can only delete their post it', (author) => {
     cy.get('[data-cy="postit"]').then((postIts) => {
@@ -13,7 +13,7 @@ Then('the user {string} can only delete their post it', (author) => {
             checkDeleteButton(i, author.toUpperCase());
         }
     });
-})
+});
 
 Then('the admin user can delete everyone\'s post it', () => {
     let numberOfPostIts, numberOfDeleteButtons;
@@ -27,7 +27,7 @@ Then('the admin user can delete everyone\'s post it', () => {
             cy.get('[data-cy="postit-delete"]').eq(i).should('be.visible');
         }
     })
-})
+});
 
 function checkDeleteButton(postItNumber, author) {
     cy.get('[data-cy="postit"]').eq(postItNumber).within(() => {
@@ -39,4 +39,4 @@ function checkDeleteButton(postItNumber, author) {
             }
         })
     })
-}
+};

@@ -11,41 +11,41 @@ When('I fill in the form with the following credentials :', (credentialsTable) =
         cy.get('[data-cy="auth-input-name"]').clear().type(credential.username)
         cy.get('[data-cy="auth-input-password"]').clear().type(credential.password)
     });
-})
+});
 
 When('I click on the log in button', () => {
     cy.get('[data-cy="auth-submit-btn"]').click()
-})
+});
 
 When('I click on the register button', () => {
     cy.get('[data-cy="auth-submit-btn"]').click()
-})
+});
 
 Then('I\'m redirected to the home page', () => {
     cy.url().should('include', '/home')
-})
+});
 
 Then('I\'m redirected to the authentication page', () => {
     cy.url().should('include', '/authent')
-})
+});
 
 Then('I can see {int} post its', (nbOfPostIts) => {
     cy.get('[data-cy="postit"]').then(result => {
         expect(result.length).to.equal(nbOfPostIts)
     })
-})
+});
 
 Then('the home page welcome message contains the user {string}', (username) => {
     cy.get('[data-cy="welcome-message"]').should('contain', `Welcome, ${username.toUpperCase()}`);
-})
+});
 
 Then('the error message {string} appears in red', (errorMessage) => {
     cy.get('[data-cy="auth-error"]').should('contain', errorMessage).should('have.css', 'color', 'oklch(0.637 0.237 25.331)');
-})
+});
 
 When('I click on register account', () => {
     cy.get('[data-cy="auth-toggle-btn"]').click();
-})
+});
 
 Then('the {string} form is displayed', (formTitle) => {
     cy.get('.bg-white').find('h2').should('contain', formTitle);

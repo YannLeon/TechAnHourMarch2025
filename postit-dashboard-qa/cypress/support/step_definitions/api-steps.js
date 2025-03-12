@@ -17,7 +17,7 @@ Given('I have a post it with the message {string} via API', (message) => {
     }
     });
     
-})
+});
 
 Given('I don\'t have a post it with the message {string} via API', (message) => {
     cy.request('GET', 'localhost:3000/postits').then(response => {
