@@ -19,6 +19,14 @@ Then('I see the post it {string} written by {string}', (message, author) => {
     verifyPostIt(message, author);
 });
 
+When('I click on the add post it button', () => {
+    cy.get('[data-cy="add-postit-btn"]').click()
+});
+
+When('I click on the log out button', () => {
+    cy.get('[data-cy="logout-btn"]').click()
+});
+
 function verifyPostIt(message, author) {
     cy.get('[data-cy="postit-content"]').contains(message).parent().within(() => {
         cy.get('[data-cy="postit-author"]').should('be.visible').then((authorName) =>

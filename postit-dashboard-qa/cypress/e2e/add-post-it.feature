@@ -1,4 +1,4 @@
-Feature: Log in test cases
+Feature: Add post it test cases
 
   Background:
     Given I don't have a post it with the message "QA Cypress note" via API
@@ -22,3 +22,13 @@ Feature: Log in test cases
       | yann     |   123123 |
     And I click on the log in button
     Then I see the post it "QA Cypress note" written by "MJ"
+
+  Scenario: Add empty post it
+    Given I am on the log in page
+    When I fill in the form with the following credentials :
+      | username | password |
+      | yann     |   123123 |
+    And I click on the log in button
+    When I click on the add post it button
+    Then I can see 3 post its
+    And the error message "Post-it cannot be empty" appears in red
