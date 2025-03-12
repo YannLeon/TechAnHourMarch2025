@@ -23,11 +23,6 @@ export const useUserStore = defineStore("user", {
         sessionStorage.setItem("token", this.token);
         sessionStorage.setItem("role", this.role);
 
-        // Simulate performance issue: Admin waits 5 seconds
-        if (this.role === "admin") {
-          await new Promise((resolve) => setTimeout(resolve, 5000));
-        }
-
         return { success: true };
       } catch (error) {
         console.log(error);
