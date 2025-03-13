@@ -3,6 +3,7 @@ import { useUserStore } from "../store/userStore.js";
 import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 import axios from "axios";
+import PostIt from "./PostIt.vue";
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -114,32 +115,14 @@ onMounted(fetchPostIts);
 
     <!-- Display Post-its -->
     <div class="w-full space-y-3 flex gap-2 flex-wrap justify-center">
-      <div
+      <PostIt
         v-for="post in postIts"
         :key="post.id"
-        class="bg-yellow-200 w-52 h-52 p-4 rounded-sm shadow-md flex flex-col relative"
-        :data-cy="`postit`"
-      >
-        <h4 class="font-bold uppercase" :data-cy="`postit-author`">
-          {{ post.name }}
-        </h4>
-        <p class="grow overflow-auto" :data-cy="`postit-content`">
-          {{ post.content }}
-        </p>
-        <small class="text-gray-600" :data-cy="'postit-date'">
-          {{ new Date(post.created_at).toLocaleString() }}
-        </small>
-
-        <!-- Show delete button only if the logged-in user owns the post-it -->
-        <button
-          v-if="post.user_id === userStore.token || userStore.role === 'admin'"
-          @click="deletePostIt(post.id)"
-          class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition"
-          :data-cy="`postit-delete`"
-        >
-          ✖
-        </button>
-      </div>
+        :post="post"
+        :user-role="userStore.role"
+        :user-id="userStore.token"
+        :delete-post-it="deletePostIt"
+      />
     </div>
   </div>
 </template>
