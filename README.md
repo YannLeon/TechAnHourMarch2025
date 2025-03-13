@@ -1,6 +1,10 @@
 # TechAnHourMarch2025
 
-Small project to illustrate the march 2025 VISEO Tech an hour on the QA Front end symbiosis
+Small project to illustrate the march 2025 VISEO Tech an hour on the QA Front end symbiosis.
+
+By [MJ Bassil](https://www.linkedin.com/in/mariejoseebassil/) and [Yann Léon](https://www.linkedin.com/in/yannleon/)
+
+⚠️ Does not work on Safari
 
 ## How to launch Back end
 
@@ -26,10 +30,11 @@ npm run dev
 ```
 
 ## How to launch QA automated tests
+
 To run the automated tests, make sure that the backend and the front end are launched
 
 1. Make sure you're terminal is opened in the right folder
-   
+
 ```
 cd .\postit-dashboard-qa\
 ```
@@ -46,7 +51,7 @@ npm install
 npm run cy:open
 ```
 
-4. To run all features containing all the tests, run the following command : 
+4. To run all features containing all the tests, run the following command :
 
 ```
 npm run all
